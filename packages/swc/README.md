@@ -52,7 +52,24 @@ The plugin accepts an object as input parameter to modify the default behaviour.
 ### `swc`
 
 - Type: [Options](https://swc.rs/docs/configuration/swcrc)
-- Default: `undefined`
+- Default:
+
+```javascript
+{
+  jsc: {
+    target: 'es2020',
+    parser: {
+      syntax: 'typescript',
+      decorators: true
+    },
+    transform: {
+      decoratorMetadata: true,
+      legacyDecorator: true
+    },
+    loose: true
+  }
+}
+```
 
 ```typescript
 import type { Options as SWCOptions } from '@swc/core';

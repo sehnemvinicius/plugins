@@ -2,7 +2,6 @@ import type { Plugin } from 'rollup';
 import { createFilter } from '@rollup/pluginutils';
 import type { Options as SWCOptions } from '@swc/core';
 import { transform } from '@swc/core';
-import { merge } from 'smob';
 
 import type { Options } from './type';
 
@@ -24,11 +23,7 @@ export function swc(input: Options = {}): Plugin {
     }
   };
 
-  if (input.swc && input.swc.env) {
-    delete defaults.jsc?.target;
-  }
-
-  const swcOptions: SWCOptions = merge({}, input.swc || {}, defaults);
+  const swcOptions: SWCOptions = input.swc ?? defaults;
 
   return {
     name: 'swc',
